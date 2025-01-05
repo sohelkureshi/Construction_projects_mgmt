@@ -1,0 +1,275 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #002f6c; /* Dark blue color */
+    padding: 10px 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff; /* White text */
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #004080; /* Slightly lighter blue for hover */
+    border-radius: 5px;
+}
+
+/* Main container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Header styling */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: #f4f4f9;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+/* Progress bar styling */
+.progress-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.progress-bar-background {
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+.progress-bar-fill {
+    background-color: #ff5e57;
+    height: 100%;
+    width: 0; /* Will be dynamically updated */
+    border-radius: 15px;
+    transition: width 0.3s ease;
+}
+
+#progress-percentage {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Zig-zag timeline styling */
+.progress-grid {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.progress-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #c5c5c5;
+    transform: translateX(-50%);
+}
+
+.progress-card {
+    position: relative;
+    width: 45%;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.progress-card:nth-child(odd) {
+    left: 0;
+    text-align: left;
+}
+
+.progress-card:nth-child(even) {
+    left: 55%; /* Adjusts to move the card to the right */
+    text-align: right;
+}
+
+.progress-card::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #ff5e57;
+    transform: translateY(-50%);
+}
+
+.progress-card:nth-child(odd)::before {
+    left: -30px; /* Positions the marker on the left for odd cards */
+}
+
+.progress-card:nth-child(even)::before {
+    right: -30px; /* Positions the marker on the right for even cards */
+}
+
+.progress-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.progress-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+button {
+    background-color: #ff5e57;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e04b48;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* Add Progress Button */
+.add-progress-btn button {
+    background-color: #ff5e57;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto; /* Center the button */
+    display: block; /* Forces the button to take full width */
+    transition: background-color 0.3s ease;
+}
+
+.add-progress-btn button:hover {
+    background-color: #e04b48;
+}
+
+/* Back Button */
+.back {
+    display: block; /* Ensure it starts on a new line */
+    margin-top: 20px; /* Add some spacing above */
+}
+
+.back button {
+    background-color: #6c757d; /* Grey color for the Back button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back button:hover {
+    background-color: #5a6268; /* Darker grey on hover */
+}
+
+
+/* Footer styling */
+.footer {
+    background-color: #002366; /* Dark blue color */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;  /* Make sure the footer stays at the bottom if content is enough */
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;  /* Add a margin to space out from content */
+    clear: both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .progress-card {
+        width: calc(50% - 20px);
+        left: auto; /* Adjust for better responsiveness */
+    }
+
+    .progress-card:nth-child(even) {
+        left: auto; /* Reset for responsiveness */
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-card {
+        width: 100%;
+        left: auto; /* Adjust for smaller screens */
+        margin: 20px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+}

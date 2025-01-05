@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow: hidden; /* Prevents scrolling */
+}
+
+body {
+  background-image: url("/images/imageFinal.jpg"); /* Add your image path here */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: #334;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.project-list {
+  list-style-type: none; /* Remove bullets */
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Align list items to the left */
+}
+
+.project-list li {
+  margin: 10px 0; /* Spacing between list items */
+}
+
+.project-list a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.project-list a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.footer {
+  background-color: #334;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .project-list {
+    font-size: 16px; /* Adjust font size for smaller screens */
+  }
+}

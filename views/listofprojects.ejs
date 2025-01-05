@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="/css/listofprojects.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project/addproject">Add Project</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="container">
+        <h1>Projects</h1>
+        <div class="project-grid" id="projectGrid">
+          <% for(let project of projects) { %>
+            <div
+              class="project-card"
+              onclick="window.location.href=`/project/<%= project.id %>` ">
+              <div class="project-name"><%- project.title %></div>
+              <div class="project-info">Supervisor: <%- project.supervisor %></div>
+              <div class="project-info">Company: <%- project.company %></div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </div>
+
+    <script>
+      // Additional JavaScript can go here if needed
+    </script>
+  </body>
+</html>

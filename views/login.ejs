@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Management Login</title>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">Project Management</div>
+      <!-- Uncomment and update these links as needed -->
+      <!--
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+      </div>
+      -->
+      <div class="auth-buttons">
+        <button onclick="location.href='/login'" id="login-btn">
+          Login
+        </button>
+        <button onclick="location.href='/signup'" id="signup-btn">
+          Signup
+        </button>
+      </div>
+    </div>
+
+    <div class="login-container">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <div id="error" class="error"></div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const errorElement = document.getElementById("error");
+
+          if (username === "admin" && password === "1234") {
+            window.location.href = "/dashboard"; // Redirect to dashboard or another page
+          } else {
+            errorElement.textContent = "Incorrect username or password";
+            errorElement.style.display = "block";
+          }
+        });
+    </script>
+  </body>
+</html>

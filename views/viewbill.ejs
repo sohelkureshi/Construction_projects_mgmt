@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bill - Demo bill</title>
+    <link rel="stylesheet" href="/css/viewbill.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/home" class="navbar-brand">Home</a>
+            <a href="/project" class="nav-link">Projects</a>
+            <a href="/notifications" class="nav-link">Notifications</a>
+            <a href="/about" class="nav-link">About</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Bill Details for Project : <%- project.title %></h1>
+        <div class="bill-info">
+            <p><strong>Bill ID:</strong> <%= bill.bill_id %></p>
+            <p><strong>Bill Name:</strong> <%= bill.Bill_Name %></p>
+            <p><strong>Date:</strong> <%= bill.date %></p>
+        </div>
+
+        <h2>Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Units</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let item of bill.items){ %>
+                    <tr>
+                        <td><%= item.item_id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.units %></td>
+                        <td><%= item.rate %></td>
+                        <td><%= item.amount %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <div class="amount-summary">
+            <p><strong>Abstract:</strong> <%= bill.total_amount.toFixed(2) %></p>
+            <p><strong>Previous Amount:</strong> <%= previousAmount.toFixed(2) %></p>
+            <p><strong>To Pay:</strong> <%= (bill.total_amount - previousAmount).toFixed(2) %></p>
+        </div>
+
+
+        <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Project Management. All rights reserved.</p>
+    </footer>
+</body>
+</html>

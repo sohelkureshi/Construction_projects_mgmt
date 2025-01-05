@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project</title>
+    <link rel="stylesheet" href="/css/addproject.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/project">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Add a New Project</h1>
+            <form action="/project/addproject" method="POST">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter project title" required>
+
+                <label for="supervisor">Supervisor:</label>
+                <input type="text" id="supervisor" name="supervisor" placeholder="Enter supervisor's name" required>
+
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company" placeholder="Enter company name" required>
+
+                <label for="overview">Overview:</label>
+                <textarea id="overview" name="overview" placeholder="Provide a brief project overview" required></textarea>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter project location" required>
+
+                <label for="duration">Duration:</label>
+                <input type="text" id="duration" name="duration" placeholder="Enter project duration (e.g., 6 months)" required>
+
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="">Select Status</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                    <option value="not started">Not Started</option>
+                </select>
+
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate">
+
+                <label for="expectedDate">Expected Date:</label>
+                <input type="date" id="expectedDate" name="expectedDate">
+
+                <button type="submit">Add Project</button>
+                <a href="/project">
+                    <button type="button">Back</button>
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </footer>
+</body>
+</html>

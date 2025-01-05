@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="/css/editproject.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="container">
+        <h1>Edit Project</h1>
+        <form id="projectForm" action="/project/<%= project._id %>/editproject?_method=PUT" method="POST">
+          <label for="title">Project Title</label>
+          <input type="text" id="title" name="title" value="<%= project.title %>" required />
+
+          <label for="supervisor">Supervisor</label>
+          <input type="text" id="supervisor" name="supervisor" value="<%= project.supervisor %>" required />
+
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" value="<%= project.company %>" required />
+
+          <label for="overview">Overview</label>
+          <textarea id="overview" name="overview" required><%= project.overview %></textarea>
+
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" value="<%= project.location %>" required />
+
+          <label for="duration">Duration</label>
+          <input type="text" id="duration" name="duration" value="<%= project.duration %>" required />
+
+          <label for="status">Status:</label>
+          <select id="status" name="status" required>
+              <option value="">Select Status</option>
+              <option value="ongoing">Ongoing</option>
+              <option value="completed">Completed</option>
+              <option value="not started">Not Started</option>
+          </select>
+
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate" name="startDate" value="<%= project.startDate ? project.startDate.toISOString().split('T')[0] : '' %>" />
+
+          <label for="expectedDate">Expected Completion Date</label>
+          <input type="date" id="expectedDate" name="expectedDate" value="<%= project.expectedDate ? project.expectedDate.toISOString().split('T')[0] : '' %>" />
+
+          <button type="submit">Save Changes</button>
+          <a href="/project/<%= project._id %>">
+              <button type="button">Back</button>
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </div>
+  </body>
+</html>

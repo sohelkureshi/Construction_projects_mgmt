@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bill - Demo Bill</title>
+    <link rel="stylesheet" href="/css/viewbill.css">
+</head>
+<body>
+    <h1>Bill Details</h1>
+    <div class="bill-info">
+        <p><strong>Bill ID:</p>
+        <p><strong>Date:</p>
+        <p><strong>Bill Name:</p>
+    </div>
+
+    <h2>Items</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Units</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        
+    </table>
+
+    <div class="amount-summary">
+        <p><strong>Previous Amount:</strong> 0</p>
+        <p><strong>Total Amount:</strong> 100</p>
+    </div>
+
+    <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
+</body>
+</html>
