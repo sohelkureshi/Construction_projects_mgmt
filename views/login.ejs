@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Management Login</title>
-    <link rel="stylesheet" href="/css/login.css" />
-  </head>
-  <body>
-    <div class="navbar">
-      <div class="logo">Project Management</div>
-      <!-- Uncomment and update these links as needed -->
-      <!--
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-      </div>
-      -->
-      <div class="auth-buttons">
-        <button onclick="location.href='/login'" id="login-btn">
-          Login
-        </button>
-        <button onclick="location.href='/signup'" id="signup-btn">
-          Signup
-        </button>
-      </div>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-    <div class="login-container">
-      <h1>Login</h1>
-      <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <div id="error" class="error"></div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
 
-    <!-- Footer Section -->
-    <div class="footer">
-      <p>&copy; 2024 Project Management. All rights reserved.</p>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Signup here</a></p>
     </div>
 
     <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
-          const username = document.getElementById("username").value;
-          const password = document.getElementById("password").value;
-          const errorElement = document.getElementById("error");
+            try {
+                console.log("Attempting login...");
+                const res = await fetch("/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
 
-          if (username === "admin" && password === "1234") {
-            window.location.href = "/dashboard"; // Redirect to dashboard or another page
-          } else {
-            errorElement.textContent = "Incorrect username or password";
-            errorElement.style.display = "block";
-          }
+                console.log("Response status:", res.status);
+                console.log("Response headers:", res.headers);
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log("Server response:", data);
+
+                if (data.message === "Login successful") {
+                    console.log("Login successful, attempting redirect...");
+                    window.location.href = "/dashboard";
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("An error occurred during login. Please try again.");
+            }
         });
     </script>
-  </body>
+</body>
 </html>

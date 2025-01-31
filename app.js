@@ -1,68 +1,80 @@
 const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config(); // Load environment variables from .env
+const ejsMate = require("ejs-mate");
+const methodOverride = require("method-override");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+
 const app = express();
-const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables from .env
-const ejsMate = require('ejs-mate');
-const methodOverride = require('method-override');
-const path = require('path');
-const projectroutes = require('./routes/project');
-const billroutes = require('./routes/bill');
-const progressroutes = require('./routes/progress');
+
+// Import Routes
+const projectroutes = require("./routes/project");
+const billroutes = require("./routes/bill");
+const progressroutes = require("./routes/progress");
+const linkRoutes = require("./routes/link");
+const authRoutes = require("./routes/auth");
 
 // MongoDB Atlas connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-    .then(() => {
-        console.log("Connection to MongoDB Atlas successful!");
-    })
-    .catch(error => {
-        console.log("Oh no, error!");
-        console.log(error);
-    });
+    .then(() => console.log("Connected to MongoDB Atlas!"))
+    .catch(error => console.error("Database connection error:", error));
 
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+db.on("error", console.error.bind(console, "Connection error:"));
+db.once("open", () => console.log("Database connected"));
 
 // EJS setup
-app.engine('ejs', ejsMate);
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views'));
-app.use(express.static(path.join(__dirname, './public')));
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "./views"));
+app.use(express.static(path.join(__dirname, "./public")));
 
 // Middleware
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// Routes
-app.use('/project', projectroutes);
-app.use('/project/:id/bill', billroutes);
-app.use('/project/:id/progress', progressroutes);
+// Authentication Routes
+app.use(authRoutes);
+
+// Application Routes
+app.use("/project", projectroutes);
+app.use("/project/:id/bill", billroutes);
+app.use("/project/:id/progress", progressroutes);
+app.use(linkRoutes);
+
+// JWT Middleware to Protect Routes
+const verifyToken = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        console.log("No token found, redirecting to login");
+        return res.redirect("/login");
+    }
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (err) {
+        console.error("Token verification failed:", err);
+        res.clearCookie("token");
+        res.redirect("/login");
+    }
+};
 
 // Route Handlers
-app.get('/', (req, res) => {
-    res.render('login');
-});
-
-app.get('/login', (req, res) => {
-    res.render('login');
-});
-
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard');
-});
-
-app.get('/drawings', (req, res) => {
-    res.render('drawings');
-});
+app.get("/", (req, res) => res.render("signup"));
+app.get("/login", (req, res) => res.render("login"));
+app.get("/signup", (req, res) => res.render("signup"));
+app.get("/dashboard", verifyToken, (req, res) => res.render("dashboard"));
+app.get("/drawings", (req, res) => res.render("drawings"));
+app.get("/tender", (req, res) => res.render("tender"));
 
 // Start server
-const PORT = process.env.PORT || 3000; // Use PORT from .env or default to 3000
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}!`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));

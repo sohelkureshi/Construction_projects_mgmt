@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Drawings Repository</title>
+  <title>Tender And Running Bills</title>
   
   <style>
     :root {
@@ -60,7 +60,7 @@
       height: 200px;
       object-fit: cover;
       display: block;
-      background: #b0b1b2;
+      background: #f1f3f4;
       border-radius: 10px;
       border-width: 5px;
       border-color: black;
@@ -72,7 +72,7 @@
       padding: 1rem;
       font-size: 0.95rem;
       color: var(--text-dark);
-      border-top: 1px solid #a19f9f;
+      border-top: 1px solid #b3afaf;
     }
 
     /* Performance-focused interactions */
@@ -91,44 +91,69 @@
 </head>
 <body>
   <div class="header">
-    <h1>Project Drawings Repository</h1>
+    <h1>Tender and Bill Documents</h1>
   </div>
-  
+
   <div class="drawing-grid">
     <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
-      <img src="/images/gfloor.png" alt="Ground Floor Plan" loading="lazy" width="250" height="200">
-      <p>Ground Floor Plan</p>
+      <img src="/images/tender-image.png" alt="Ground Floor Plan" loading="lazy" width="250" height="200">
+      <p>Tender</p>
     </div>
 
     <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
-      <img src="/images/second-floor.png" alt="Second Floor Plan" loading="lazy" width="250" height="200">
-      <p>Second Floor Plan</p>
+      <img src="/images/1st-RA.png" alt="Second Floor Plan" loading="lazy" width="250" height="200">
+      <p>1st RA Bill</p>
     </div>
 
     <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
-      <img src="/images/layout-foundation.png" alt="Layout Plan" loading="lazy" width="250" height="200">
-      <p>Layout Plan at Foundation Level</p>
+      <img src="/images/2nd-RA.png" alt="Layout Plan" loading="lazy" width="250" height="200">
+      <p>2nd RA Bill</p>
     </div>
 
     <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
-      <img src="/images/roof-slab.png" alt="Roof Slab Plan" loading="lazy" width="250" height="200">
-      <p>Layout Plan at Roof Slab Level</p>
+      <img src="/images/3rd-RA.png" alt="Roof Slab Plan" loading="lazy" width="250" height="200">
+      <p>3rd RA Bill</p>
     </div>
     
-    <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
+    <!-- <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
       <img src="/images/window-sill.png" alt="Window Sill" loading="lazy" width="250" height="200">
       <p>Layout Plan at Window Sill Level</p>
-    </div>
+    </div> -->
   </div>
 
+  <!-- Form Upload -->
+  <!-- <div style="margin: 100px;">
+    <h2>Upload New Tender Document</h2>
+    <form id="linkForm">
+      <input 
+        type="text" 
+        id="titleInput" 
+        placeholder="Enter document name" 
+        required 
+      />
+      <br><br>
+      <input 
+        type="text" 
+        id="urlInput" 
+        placeholder="Paste Google Drive link here" 
+        required 
+      />
+      <br><br>
+      <button type="submit">Add Document</button>
+    </form>
+  </div> -->
+
   <!-- Defer non-critical JS -->
+  <!-- <script defer src="/js/linkUploader.js"></script> -->
   <script defer>
+    // For the existing hardcoded cards
     document.querySelectorAll('.drawing-card').forEach(card => {
       card.addEventListener('click', () => {
-        window.open(card.dataset.gdrive, '_blank'); // Open in new tab
+        window.open(card.dataset.gdrive, '_blank'); 
       });
     });
   </script>
+
   
 </body>
 </html>
