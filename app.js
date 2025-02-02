@@ -18,12 +18,12 @@ const authRoutes = require("./routes/auth");
 
 // MongoDB Atlas connection
 mongoose.connect(process.env.MONGO_URI)
-    // .then(() => console.log("Connected to MongoDB Atlas!"))
-    // .catch(error => console.error("Initial connection error:", error));
+    .then(() => console.log("Connected to MongoDB Atlas!"))
+    .catch(error => console.error("Initial connection error:", error));
 
 const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "Ongoing connection error:"));
-// db.once("open", () => // console.log$&;
+db.on("error", console.error.bind(console, "Ongoing connection error:"));
+db.once("open", () => console.log("Database connected"));
 
 // EJS setup
 app.engine("ejs", ejsMate);
@@ -50,7 +50,7 @@ app.use(linkRoutes);
 const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
-        // // console.log$&;
+        console.log("No token found, redirecting to login");
         return res.redirect("/login");
     }
     try {
@@ -58,7 +58,7 @@ const verifyToken = (req, res, next) => {
         req.user = verified;
         next();
     } catch (err) {
-        // console.error("Token verification failed:", err);
+        console.error("Token verification failed:", err);
         res.clearCookie("token");
         res.redirect("/login");
     }
@@ -74,4 +74,4 @@ app.get("/tender", (req, res) => res.render("tender"));
 
 // Start server
 const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => // console.log$&;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));

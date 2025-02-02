@@ -11,7 +11,7 @@ async function connectToDatabase() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        // console.log$&;
+        console.log("Database connected");
     } catch (error) {
         console.error("Connection error:", error);
         process.exit(1); // Exit the process if connection fails
@@ -21,7 +21,7 @@ async function connectToDatabase() {
 async function clearExistingData() {
     try {
         await Bill.deleteMany({});
-        // console.log$&;
+        console.log('Existing bill data cleared.');
     } catch (error) {
         console.error('Error clearing existing data:', error);
     }
@@ -30,7 +30,7 @@ async function clearExistingData() {
 async function insertBillData() {
     try {
         const insertedBills = await Bill.insertMany(bill_data);
-        // console.log$&;
+        console.log(`${insertedBills.length} bill documents were inserted.`);
         return insertedBills;
     } catch (error) {
         console.error('Error inserting bill data:', error);
@@ -46,9 +46,9 @@ async function updateProject() {
                 { $push: { bills: { $each: bill_data.map(bill => bill.id) } } },
                 { new: true }
             );
-            // console.log$&;
+            console.log('Bills added to the project successfully.', updatedProject);
         } else {
-            // console.log$&;
+            console.log('Project not found');
         }
     } catch (error) {
         console.error('Error updating project:', error);
@@ -61,7 +61,7 @@ async function main() {
     await insertBillData();
     await updateProject();
     mongoose.connection.close();
-    // console.log$&;
+    console.log("Database connection closed");
 }
 
 main();

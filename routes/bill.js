@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
             return res.status(404).send('Project not found');
         }
 
-        // console.log$&;
+        console.log(`Displaying billing page for project id: ${projectId}`);
         res.render('billing', { project });
     } catch (error) {
         console.error(error);
@@ -54,7 +54,7 @@ router.post('/addbill', async (req, res) => {
         await bill.save();
         await project.save();
 
-        // console.log$&;
+        console.log(`Bill added: ${bill}`);
         res.redirect(`/project/${projectId}/bill`);
     } catch (error) {
         console.error(error);
@@ -89,8 +89,8 @@ router.get('/:billId', async (req, res) => {
         // Determine the previous amount or default to 0
         const previousAmount = previousBill ? previousBill.total_amount : 0;
 
-        // console.log$&;
-        // console.log$&;
+        console.log(`Displaying billing page for project: ${project.title}, bill: ${bill.Bill_Name}`);
+        console.log('Bill', bill);
 
         // Render the view with the current bill and previous amount
         res.render('viewbill', {
@@ -123,7 +123,7 @@ router.put('/:billId', async (req, res) => {
             return res.status(404).send('Bill not found');
         }
 
-        // console.log$&;
+        console.log(`Bill updated: ${updatedBill.Bill_Name}`);
         res.redirect(`/project/${projectId}/bill/${billId}`); // Redirect to the updated bill's page
     } catch (error) {
         console.error('Error updating the bill:', error);

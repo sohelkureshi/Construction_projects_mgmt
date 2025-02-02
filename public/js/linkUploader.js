@@ -16,7 +16,7 @@ form.addEventListener('submit', async (e) => {
     });
     
     if (!res.ok) {
-      // console.error('Error adding link');
+      console.error('Error adding link');
       return;
     }
 
@@ -27,7 +27,7 @@ form.addEventListener('submit', async (e) => {
     titleInput.value = '';
     urlInput.value = '';
   } catch (error) {
-    // console.error('Error:', error);
+    console.error('Error:', error);
   }
 });
 
@@ -63,7 +63,7 @@ async function loadLinks() {
     const links = await res.json();
     links.forEach(link => addCardToDOM(link));
   } catch (error) {
-    // console.error('Error loading links:', error);
+    console.error('Error loading links:', error);
   }
 }
 

@@ -9,7 +9,7 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true
 })
 .then(async () => {
-    // console.log$&;
+    console.log("Database connected");
 
     try {
         
