@@ -10,28 +10,28 @@ const data = require('./proj_list'); // Import data to be inserted
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("Database connected");
+    // console.log$&;
 
     // Log the data to be inserted
-    console.log('Data to be inserted:', data);
+    // console.log$&;
 
     // Optional: Clear existing data
     await project.deleteMany({});
-    console.log("Existing data cleared");
+    // console.log$&;
 
     // Insert data
     const result = await project.insertMany(data);
-    console.log(`${result.length} documents were inserted`);
+    // console.log$&;
 
     // Fetch and display projects
     const projects = await project.find({});
-    console.log('Projects:', projects);
+    // console.log$&;
   } catch (error) {
     console.error('An error occurred:', error);
   } finally {
     // Close the connection
     mongoose.connection.close();
-    console.log("Database connection closed");
+    // console.log$&;
   }
 })();
 

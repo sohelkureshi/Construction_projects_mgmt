@@ -1,54 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="/css/signup.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Signup</h2>
-        <form id="signupForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Hub - Signup</title>
+    <link rel="stylesheet" href="/css/signup.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">ProjectHub</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/login" class="btn">Login</a>
+        </div>
+      </div>
+    </nav>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Transform Your Project Management</h1>
+          <p>
+            Collaborate, track, and succeed with our comprehensive project
+            management solution
+          </p>
+          <div class="cta-buttons">
+            <a href="#signup" class="btn primary">Get Started</a>
+          </div>
+        </div>
+        <img
+          src="/images/full backgroundd.png"
+          alt="Project Management Dashboard"
+          class="hero-image"
+        />
+      </div>
+    </section>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2>Why Choose ProjectHub?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <i class="fas fa-tasks"></i>
+            <h3>Task Management</h3>
+            <p>Easily create, assign, and track tasks across your team</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Real-time Analytics</h3>
+            <p>Monitor project progress with interactive dashboards</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-users"></i>
+            <h3>Team Collaboration</h3>
+            <p>Seamless communication and file sharing</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <button type="submit">Signup</button>
-        </form>
-        <p>Already have an account? <a href="/login">Login here</a></p>
-    </div>
+    <!-- Signup Section -->
+    <section id="signup" class="signup-section">
+      <div class="container">
+        <div class="signup-content">
+          <h2>Start Your Free Trial Today</h2>
+          <form id="signupForm" class="signup-form">
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn primary">Create Account</button>
+          </form>
+          <p class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>ProjectHub</h4>
+            <p>Empowering teams to achieve more</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="/">Home</a>
+            <a href="/features">Features</a>
+            <a href="/contact">Contact</a>
+          </div>
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 ProjectHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+      // Existing signup form script
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
 
-            try {
-                const res = await fetch("/signup", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, password }),
-                });
+          try {
+            const res = await fetch("/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, password }),
+            });
 
-                const data = await res.json();
-                alert(data.message);
+            const data = await res.json();
+            alert(data.message);
 
-                if (res.ok && data.redirect) {
-                    window.location.href = data.redirect;
-                }
-            } catch (error) {
-                console.error("Error during signup:", error);
-                alert("An error occurred during signup. Please try again.");
+            if (res.ok && data.redirect) {
+              window.location.href = data.redirect;
             }
+          } catch (error) {
+            console.error("Error during signup:", error);
+            alert("An error occurred during signup. Please try again.");
+          }
         });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

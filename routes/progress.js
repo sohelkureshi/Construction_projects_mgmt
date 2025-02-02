@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
             percent = 0
         }
 
-        console.log(`Displaying progress page for project id: ${projectId}`);
+        // console.log$&;
         res.render('progress', {project,percent});
     } catch (error) {
         console.error(error);
@@ -80,7 +80,7 @@ router.get('/:progressId/editprogress', async (req, res) => {
             return res.status(404).send('Progress not found');
         }
 
-        // console.log(`Progress updated for: ${updatedProgress.task}`);
+        // // console.log$&;
         res.render('editprog_task', { project, progress: updatedProgress });
     } catch (error) {
         console.error('Error updating the bill:', error);
@@ -171,8 +171,8 @@ router.post('/addprogress', upload.array('image', 3), async (req, res) => {
         });
 
         const img = req.files;
-        console.log('req.body:', req.body);
-        console.log('req.files:', req.files);
+        // console.log$&;
+        // console.log$&;
 
         progress.image = img.map(f => ({ fileName: f.filename, url: f.path }));
         await progress.save();
@@ -181,7 +181,7 @@ router.post('/addprogress', upload.array('image', 3), async (req, res) => {
         await project.save();
 
         res.redirect(`/project/${projectId}/progress`);
-        console.log(`Progress made: ${project.progresses}`);
+        // console.log$&;
         // */
     } catch (error) {
         console.error('Error adding progress:', error);

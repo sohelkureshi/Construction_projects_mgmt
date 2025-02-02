@@ -10,35 +10,35 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
 })
     .then(async () => {
-        console.log("Database connected");
+        // console.log$&;
 
         try {
             // Fetch the "PG Classroom Complex" project and populate its bills
             const projectToUpdate = await Project.findOne({ title: 'PG Classroom Complex' }).populate('bills');
 
             if (projectToUpdate && projectToUpdate.bills.length > 0) {
-                console.log(`Displaying bills for ${projectToUpdate.title}:`);
+                // console.log$&;
                 for (let bill of projectToUpdate.bills) {
-                    console.log(`Bill ID: ${bill.bill_id}`);
-                    console.log(`Bill Name: ${bill.Bill_Name}`);
-                    console.log('------------------------');
+                    // console.log$&;
+                    // console.log$&;
+                    // console.log$&;
                     for (let item of bill.items) {
-                        console.log(`Item Name: ${item.name}`);
-                        console.log(`Quantity: ${item.quantity}`);
-                        console.log(`Units: ${item.units}`);
-                        console.log(`Rate: ${item.rate}`);
-                        console.log(`Amount: ${item.amount}`);
-                        console.log('------------------------');
+                        // console.log$&;
+                        // console.log$&;
+                        // console.log$&;
+                        // console.log$&;
+                        // console.log$&;
+                        // console.log$&;
                     }
                 }
             } else {
-                console.log('No bills found for PG Classroom Complex.');
+                // console.log$&;
             }
         } catch (error) {
             console.error('An error occurred:', error);
         } finally {
             mongoose.connection.close();
-            console.log("Database connection closed");
+            // console.log$&;
         }
     })
     .catch(error => {

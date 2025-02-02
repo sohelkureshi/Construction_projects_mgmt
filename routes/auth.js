@@ -10,24 +10,24 @@ router.post("/signup", async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        console.log("Signup request received with:", { name, email, password });
+        // // console.log$&;
 
         const existingUser = await User.findOne({ email });
-        console.log("Existing user:", existingUser);
+        // console.log$&;
 
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log("Hashed password:", hashedPassword);
+        // console.log$&;
 
         const user = new User({ name, email, password: hashedPassword });
         await user.save();
-        console.log("User saved:", user);
+        // console.log$&;
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-        console.log("JWT token generated:", token);
+        // console.log$&;
 
         res.cookie("token", token, { httpOnly: true });
         return res.status(200).json({ message: "Signup successful", redirect: "/dashboard" });
@@ -42,24 +42,24 @@ router.post("/signup", async (req, res) => {
 // login route
 router.post("/login", async (req, res) => {
     try {
-        console.log("Login request received:", req.body);
+        // console.log$&;
         const { email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user) {
-            console.log("User not found");
+            // console.log$&;
             return res.status(400).json({ message: "User not found" });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            console.log("Invalid credentials");
+            // console.log$&;
             return res.status(400).json({ message: "Invalid credentials" });
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
         res.cookie("token", token, { httpOnly: true });
         
-        console.log("Login successful, sending response");
+        // console.log$&;
         return res.status(200).json({ message: "Login successful", redirect: "/dashboard" });
     } catch (error) {
         console.error("Login error:", error);
