@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Comments</title>
+    <link rel="stylesheet" href="/css/view_comments.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Displaying all Comments for: <%= project.title %></h1>
+
+      <% if (project.comments && project.comments.length > 0) { %>
+        <% project.comments.forEach((comment) => { %>
+          <div class="comment-card">
+            <div class="comment-meta">
+              <span><%= comment.user_name %> (<%= comment.user_role %>)</span>
+              <span><%= new Date(comment.date).toLocaleDateString() %></span>
+            </div>
+            <div class="comment-text">
+              <p><%= comment.comment %></p>
+            </div>
+            <% if(user && ["engineer","contractor","senior-manager","manager","admin"].includes(user.role)) { %>
+              <a href="/project/<%= project._id %>/comment/addcomment" class="reply-button">Reply</a>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No comments available.</p>
+      <% } %>
+
+      <% if(user && ["engineer","contractor","senior-manager","manager","admin"].includes(user.role)) { %>
+        <div class="add-comment-container">
+          <a href="/project/<%= project._id %>/comment/addcomment" class="add-comment-button">Add Comment</a>
+        </div>
+      <% } %>
+    </div>
+
+    
+
+    <div class="footer">
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@ const Project = require('../model/projectSchema');
 const {storage} = require('../cloudinary/index')
 const multer = require('multer')
 const upload = multer({ storage})
-
+const authorize = require('../middleware/authorize');
 
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
@@ -37,12 +37,13 @@ router.get('/', async (req, res) => {
         }
 
         console.log(`Displaying progress page for project id: ${projectId}`);
-        res.render('progress', {project,percent});
+        res.render('listview_progress', {project,percent,user:req.user});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
     }
 });
+
 
 router.get('/:progressId/viewprogress', async (req, res) => {
     const { progressId } = req.params;
@@ -67,7 +68,7 @@ router.get('/:progressId/viewprogress', async (req, res) => {
     }
 });
 
-router.get('/:progressId/editprogress', async (req, res) => {
+router.get('/:progressId/editprogress',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
      const { id: projectId, progressId } = req.params;
 
     try {
@@ -81,14 +82,14 @@ router.get('/:progressId/editprogress', async (req, res) => {
         }
 
         // console.log(`Progress updated for: ${updatedProgress.task}`);
-        res.render('editprog_task', { project, progress: updatedProgress });
+        res.render('editprog_task', { project, progress: updatedProgress, user:req.user });
     } catch (error) {
         console.error('Error updating the bill:', error);
         res.status(500).send('Error updating the bill');
     }
 })
 
-router.put('/:progressId/editprogress', upload.array('image',3), async (req, res) => {
+router.put('/:progressId/editprogress',authorize(["engineer", "contractor", "admin"]), upload.array('image',3), async (req, res) => {
     const { id: projectId, progressId } = req.params;
     try {
         const { task, initial_date, final_date, percentage, completed, description, removedImages } = req.body;
@@ -130,7 +131,8 @@ router.put('/:progressId/editprogress', upload.array('image',3), async (req, res
     }
 });
 
-router.get('/addprogress', async (req, res) => {
+
+router.get('/addprogress',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
     const projectId = req.params.id;
 
     try {
@@ -141,14 +143,14 @@ router.get('/addprogress', async (req, res) => {
             return res.status(404).send('Project not found');
         }
 
-        res.render('addprogress', {project});
+        res.render('addprogress', {project,user:req.user});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
     }
 });
 
-router.post('/addprogress', upload.array('image', 3), async (req, res) => {
+router.post('/addprogress',authorize(["engineer", "contractor", "admin"]), upload.array('image', 3), async (req, res) => {
     const projectId = req.params.id;
     console.log(projectId)
 
@@ -188,9 +190,6 @@ router.post('/addprogress', upload.array('image', 3), async (req, res) => {
         res.status(500).send('Error adding progress');
     }
 });
-
-
-
 
 module.exports = router;
 

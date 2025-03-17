@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Documents</title>
+    <link rel="stylesheet" href="/css/documents.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- Drawings Section -->
+      <div class="section" id="drawingsSection">
+        <div class="section-header">
+          <h2>Project Drawings</h2>
+          <div class="section-actions">
+            <a
+              href="https://drive.google.com/drive/folders/1jJ0AXo9A7DPM6opPuwriQBD75Z5HQfZz"
+              class="drive-link"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 87.3 78"
+                height="20px"
+                width="20px"
+              >
+                <path
+                  d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z"
+                  fill="#0066da"
+                />
+                <path
+                  d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z"
+                  fill="#00ac47"
+                />
+                <path
+                  d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z"
+                  fill="#ea4335"
+                />
+                <path
+                  d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z"
+                  fill="#00832d"
+                />
+                <path
+                  d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z"
+                  fill="#2684fc"
+                />
+                <path
+                  d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z"
+                  fill="#ffba00"
+                />
+              </svg>
+              View in Google Drive
+            </a>
+            <% if(user &&
+            ["engineer","contractor","senior-manager","manager","admin"].includes(user.role))
+            { %>
+            <button class="upload-button" id="toggleDrawingForm">
+              Upload Drawing
+            </button>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Drawing Upload Form -->
+        <div class="form-container" id="drawingForm">
+          <h3>Add New Drawing</h3>
+          <form id="drawingUploadForm">
+            <div class="form-group">
+              <label for="drawingTitle">Drawing Title</label>
+              <input
+                type="text"
+                id="drawingTitle"
+                placeholder="Enter drawing title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="drawingLink">Google Drive Link</label>
+              <input
+                type="text"
+                id="drawingLink"
+                placeholder="Paste Google Drive link here"
+                required
+              />
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="toggleForm('drawingForm')"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">Add Drawing</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="documents-grid" id="drawingsGrid">
+          <% if (project && project.drawings && project.drawings.length > 0) {
+          %> <% project.drawings.forEach((drawing) => { %>
+          <div class="document-card" data-gdrive="<%= drawing.link %>">
+            <!-- <img
+              src="<%= drawing.image || '/images/gfloor.png' %>"
+              alt="<%= drawing.title %>"
+            /> -->
+            <div class="document-info">
+              <p class="title"><%= drawing.title %></p>
+              <p class="date">
+                <%= new Date(drawing.date || Date.now()).toLocaleDateString() %>
+              </p>
+            </div>
+          </div>
+          <% }); %> <% } else { %>
+          <div class="empty-state">
+            <p>
+              No drawings available yet. Use the upload button to add project
+              drawings.
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Tender Documents Section -->
+      <div class="section" id="tenderSection">
+        <div class="section-header">
+          <h2>Tender Documents</h2>
+          <div class="section-actions">
+            <a
+              href="https://drive.google.com/drive/folders/12IoP0p9K0HG9WvSjnunwZLrnnlqDBXT6"
+              class="drive-link"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 87.3 78"
+                height="20px"
+                width="20px"
+              >
+                <path
+                  d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z"
+                  fill="#0066da"
+                />
+                <path
+                  d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z"
+                  fill="#00ac47"
+                />
+                <path
+                  d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z"
+                  fill="#ea4335"
+                />
+                <path
+                  d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z"
+                  fill="#00832d"
+                />
+                <path
+                  d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z"
+                  fill="#2684fc"
+                />
+                <path
+                  d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z"
+                  fill="#ffba00"
+                />
+              </svg>
+              View in Google Drive
+            </a>
+            <% if(user &&
+            ["engineer","contractor","senior-manager","manager","admin"].includes(user.role))
+            { %>
+            <button class="upload-button" id="toggleTenderForm">
+              Upload Tender
+            </button>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Tender Upload Form -->
+        <div class="form-container" id="tenderForm">
+          <h3>Add New Tender Document</h3>
+          <form id="tenderUploadForm">
+            <div class="form-group">
+              <label for="tenderTitle">Document Title</label>
+              <input
+                type="text"
+                id="tenderTitle"
+                placeholder="Enter document title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="tenderLink">Google Drive Link</label>
+              <input
+                type="text"
+                id="tenderLink"
+                placeholder="Paste Google Drive link here"
+                required
+              />
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="toggleForm('tenderForm')"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Add Document
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="documents-grid" id="tendersGrid">
+          <% if (project && project.tenders && project.tenders.length > 0) { %>
+          <% project.tenders.forEach((tender) => { %>
+          <div class="document-card" data-gdrive="<%= tender.link %>">
+            <!-- <img
+              src="<%= tender.image || '/images/tender-image.png' %>"
+              alt="<%= tender.title %>"
+            /> -->
+            <div class="document-info">
+              <p class="title"><%= tender.title %></p>
+              <p class="date">
+                <%= new Date(tender.date || Date.now()).toLocaleDateString() %>
+              </p>
+            </div>
+          </div>
+          <% }); %> <% } else { %>
+          <div class="empty-state">
+            <p>
+              No tender documents available yet. Use the upload button to add
+              tender documents.
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div id="documentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Document Preview</h3>
+          <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe id="documentFrame" src="" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; <%= new Date().getFullYear() %> Construction Management. All
+        rights reserved.
+      </p>
+    </footer>
+
+    <script  src="/js/documents.js">
+      
+    </script>
+  </body>
+</html>

@@ -1,89 +1,84 @@
-const express = require('express');
-const app = express()
-var router = express.Router({mergeParams:true})
-const Project = require('../model/projectSchema')
+const express = require("express");
+const router = express.Router({ mergeParams: true });
+const Project = require("../model/projectSchema");
+const authorize = require("../middleware/authorize");
 
-router.get('/', async(req, res) => {
-  const projects = await Project.find({})
-  .sort({startDate:1})
-  // projects.sort({startDate:1})
-  // projects.limit(10)
-  // res.render('allprojects', { projects});
-  res.render('listofprojects', { projects});
-//   console.log('Projects',projects)
+// Middleware to ensure `user` is always passed to views
+router.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
 });
 
-router.get('/addproject', async(req, res) => {
-  res.render('addproject');
-});
-
-router.post('/addproject', async(req, res) => {
-  const project = new Project(req.body)
-  await project.save()
-  res.redirect('/project');
-//   console.log('Projects',projects)
-});
-
-router.get('/:id', async (req, res) => {
-  const projectId = req.params.id; 
+// Get all projects
+router.get("/", async (req, res) => {
   try {
-    const project = await Project.findById(projectId); 
-
-    if (!project) {
-      return res.status(404).send('Project not found'); 
-    }
-
-    res.render('project_details', {project});
+    const projects = await Project.find({}).sort({ startDate: 1 });
+    res.render("listofprojects", { 
+      projects,
+      user: req.user // Explicitly pass user information
+    });
   } catch (error) {
-    console.error(error); 
-    res.status(500).send('Error fetching project details'); 
-  }
-}); 
-
-router.get('/:id/editproject', async(req, res) => {
-  const projectId = req.params.id; 
-  try {
-    const project = await Project.findById(projectId); 
-
-    if (!project) {
-      return res.status(404).send('Project not found'); 
-    }
-
-    res.render('editproject', {project});
-  } catch (error) {
-    console.error(error); 
-    res.status(500).send('Error fetching project details'); 
+    console.error("Error fetching projects:", error);
+    res.status(500).send("Server error");
   }
 });
 
-router.put('/:id/editproject', async(req, res) => {
-  const projectId = req.params.id; 
-  // const {data} = req.body
+// Add project page (Only Manager, Contractor, Admin can access)
+router.get("/addproject", authorize(["manager", "contractor", "admin"]), (req, res) => {
+  res.render("addproject", { user: req.user });
+});
+// Handle project addition (Only Manager, Contractor, Admin can add)
+router.post("/addproject", authorize(["manager", "contractor", "admin"]), async (req, res) => {
   try {
-    const project = await Project.findById(projectId);
-    // const up_project = new Project(req.body)
-
-
-    if (!project) {
-      return res.status(404).send('Project not found'); 
-    }
-    const updatedproject = await Project.findByIdAndUpdate(
-            projectId,
-            { $set: req.body }, // Update the bill data
-            { new: true, runValidators: true } // Return the updated document
-        );
-    res.redirect(`/project/${projectId}`);
-    console.log('Project data : ',project)
+    const project = new Project(req.body);
+    await project.save();
+    res.redirect("/project");
   } catch (error) {
-    console.error(error); 
-    res.status(500).send('Error fetching project details'); 
+    console.error("Error adding project:", error);
+    res.status(500).send("Error adding project");
   }
-  // await project.save()
-  
-  
+});
+// Get project details
+router.get("/:id", async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).send("Project not found");
+    res.render("project_details", { 
+      project,
+      user: req.user // Explicitly pass user information
+    });
+  } catch (error) {
+    console.error("Error fetching project details:", error);
+    res.status(500).send("Server error");
+  }
 });
 
+// Edit project page (Only Manager, Contractor, Admin can edit)
+router.get("/:id/editproject", authorize(["manager", "contractor", "admin"]), async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).send("Project not found");
+    res.render("editproject", { project });
+  } catch (error) {
+    console.error("Error fetching project for edit:", error);
+    res.status(500).send("Server error");
+  }
+});
 
+// Handle project update (Only Manager, Contractor, Admin can update)
+router.put("/:id/editproject", authorize(["manager", "contractor", "admin"]), async (req, res) => {
+  try {
+    const updatedProject = await Project.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, runValidators: true }
+    );
+    if (!updatedProject) return res.status(404).send("Project not found");
+    res.redirect(`/project/${req.params.id}`);
+  } catch (error) {
+    console.error("Error updating project:", error);
+    res.status(500).send("Server error");
+  }
+});
 
-module.exports = router
-
+module.exports = router;

@@ -1,0 +1,13 @@
+express
+multer
+cloudinary
+multer-storage-cloudinary
+dotenv
+mongoose
+method-override
+cookie-parser
+path
+jsonwebtoken
+express-session
+bcryptjs
+passport

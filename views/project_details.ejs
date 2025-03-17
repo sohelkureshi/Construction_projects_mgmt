@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Management</title>
+    <title>Construction Management</title>
     <link rel="stylesheet" href="/css/project_details.css" />
   </head>
   <body>
@@ -11,55 +11,63 @@
       <ul>
         <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
-        <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
+        %>
+        <li>
+          <a href="/project/<%= project.id %>/editproject">Edit Project</a>
+        </li>
+        <% } %>
         <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
     </nav>
 
     <div class="container">
       <div class="left-section">
         <ul>
-            <li>
-              <a href="/drawings" target="_blank">Drawings</a>
-            </li>
-            <li>
-              <a href="/tender" target="_blank">Tender</a>
-            </li>
-            <li>
-              <a href='/project/<%- project.id %>/bill' target="_blank">Bill</a>
-            </li>
-            <li>
-              <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
-            </li>
-            <li>
-              <a href="/comments" target="_blank">Comments</a>
-            </li>
+          <!-- <li>
+            <a href="/drawings" target="_blank">Drawings</a>
+          </li> -->
+          <!-- <li>
+            <a href="/tender" target="_blank">Tender</a>
+          </li> -->
+          <li>
+            <a href="/project/<%- project.id %>/progress" target="_blank"
+              >Progress</a
+            >
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
+          </li>
+          
+          <li>
+            <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/comment">Comments</a>
+          </li>
         </ul>
       </div>
       <div class="main-section">
         <div class="content">
           <h1><%= project.title %></h1>
           <p>
-            <strong>Project Overview:</strong> <%= project.overview %><br><br>
-            <strong>Location:</strong> <%= project.location %><br><br>
-            <strong>Project Duration:</strong> <%= project.duration %><br><br>
-            <strong>Current Status:</strong> <%= project.status %><br><br>
-            <strong>Start Date :</strong> <%= project.startDate %><br><br>
-            <strong>Completion Date :</strong> <%= project.expectedDate %><br><br>
+            <strong>Project Overview:</strong> <%= project.overview %><br /><br />
+            <strong>Location:</strong> <%= project.location %><br /><br />
+            <strong>Project Duration:</strong> <%= project.duration %><br /><br />
+            <strong>Current Status:</strong> <%= project.status %><br /><br />
+            <strong>Start Date :</strong> <%= project.startDate %><br /><br />
+            <strong>Completion Date :</strong> <%= project.expectedDate %><br /><br />
           </p>
         </div>
-      </div>
-      <div class="right-section">
-        <h2>Add Comments</h2>
-        <form action="/add-comment" method="POST">
-          <textarea name="comment" placeholder="Write your comment here..."></textarea>
-          <button type="submit">Add Comment</button>
-        </form>
       </div>
     </div>
 
     <div class="footer">
-      <p>&copy; <%= new Date().getFullYear() %> Project Management. All rights reserved.</p>
+      <p>
+        &copy; <%= new Date().getFullYear() %> Construction Management. All
+        rights reserved.
+      </p>
     </div>
   </body>
 </html>

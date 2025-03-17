@@ -1,0 +1,152 @@
+/* General styling */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #08080a;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin-right: 1.5rem;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: #3949ab;
+}
+
+/* Main container */
+.container {
+    width: 50%;
+    height: 30%;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* Comment Card Styling */
+.comment-card {
+    background: lightgray;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(104, 11, 11, 0.1);
+    margin: 15px 0;
+    padding: 15px;
+    text-align: left;
+    position: relative;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    background-color: #0b0b0c;
+    color: white;
+    padding: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 14px;
+}
+
+.comment-text {
+    padding: 10px;
+    color: #333;
+}
+
+.reply-button {
+    display: inline-block;
+    background-color: #0e0f12;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.reply-button:hover {
+    background-color: #d62b2b;
+}
+
+/* Add Comment Button Styling */
+.add-comment-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-comment-button {
+    display: inline-block;
+    background-color: #0e0f12;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.add-comment-button:hover {
+    background-color: #d62b2b;
+}
+
+/* Footer */
+.footer {
+    background-color: #020516;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+}

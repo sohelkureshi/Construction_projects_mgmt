@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url("/images/imageFinal.jpg"); /* Replace with your image path */
+  background-image: url("/images/imageFinal.jpg"); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

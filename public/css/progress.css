@@ -237,7 +237,7 @@ button:disabled {
     background-color: #002366; /* Dark blue color */
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem 0;
     position: relative;  /* Make sure the footer stays at the bottom if content is enough */
     bottom: 0;
     width: 100%;

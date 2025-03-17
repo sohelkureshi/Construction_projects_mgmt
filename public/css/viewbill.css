@@ -1,94 +1,114 @@
-/* General body styling */
-body {
-    font-family: Arial, sans-serif;
+/* Dark Theme View Bill */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #2d88ff;
+    --accent-color: #ff4d4d;
+    --text-light: #ffffff;
+    --text-dark: #050000;
+    --background-light: rgb(255, 255, 255);
+    --surface-color: #f0eeee;
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.5);
+  }
+  
+  body {
+    font-family: 'Inter', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: var(--background-light);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.container {
+    color: var(--text-dark);
+  }
+  
+  .container {
     padding: 20px;
-}
-
-h1 {
-    color: #333;
-}
-
-.button-group {
+  }
+  
+  h1 {
+    color: var(--text-dark);
+  }
+  
+  .button-group {
     margin-bottom: 20px;
-}
-
-.button {
-    background-color: #007bff;
-    color: white;
+  }
+  
+  .button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 5px;
-}
-
-.button:hover {
-    background-color: #0056b3;
-}
-
-table {
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #2472cc;
+  }
+  
+  table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    background-color: #fff;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  table, th, td {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
     padding: 10px;
     text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-}
-
-/* Right align the amount-summary section */
-.amount-summary {
+    color: var(--text-dark);
+  }
+  
+  th {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .amount-summary {
     text-align: right;
-    margin-top: 20px; /* Add spacing between table and summary */
-}
-
-/* Navbar styling */
-.navbar {
-    background-color: #002366; /* Dark blue color */
+    margin-top: 20px;
+    color: var(--text-dark);
+  }
+  
+  .navbar {
+    background-color: var(--primary-color);
     padding: 15px 0;
     text-align: center;
-}
-
-.navbar-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
     display: inline-block;
-}
-
-.navbar-brand, .nav-link {
-    color: #fff;
+  }
+  
+  .navbar-brand, .nav-link {
+    color: var(--text-light);
     text-decoration: none;
     font-weight: bold;
     margin: 0 15px;
-}
-
-.navbar-brand:hover, .nav-link:hover {
-    text-decoration: underline;
-}
-
-/* Footer styling */
-.footer {
-    background-color: #002366; /* Dark blue color */
-    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-brand:hover, .nav-link:hover {
+    color: var(--secondary-color);
+    text-decoration: none;
+  }
+  
+  .footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem 0;
     position: sticky;
     bottom: 0;
     width: 100%;
     margin-top: auto;
-}
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  

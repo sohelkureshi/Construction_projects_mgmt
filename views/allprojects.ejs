@@ -13,6 +13,7 @@
         <li><a href="/project/addproject">Add Project</a></li>
         <li><a href="#tasks">Notifications</a></li>
         <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
       </ul>
     </nav>
 
@@ -21,18 +22,18 @@
         <h1>Projects</h1>
         <ul class="project-list">
           <% for(let project of projects) { %>
-            <li>
-              <a href="/project/<%= project.id %>"><%- project.title %></a>
-              , Supervisor : <%= project.supervisor %>
-            </li>
-              
+          <li>
+            <a href="/project/<%= project.id %>"><%- project.title %></a>
+            , Supervisor : <%= project.supervisor %>
+          </li>
+
           <% } %>
         </ul>
       </div>
     </div>
 
     <div class="footer">
-      <p>&copy; 2024 Project Management. All rights reserved.</p>
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </div>
 
     <script>

@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 const {Schema} = mongoose
+// const user = require('../model/userSchema')
 
 const billSchema = new Schema({
     "bill_id": {type:Number},
     "date": {type:Date},
     "Bill_Name" : {type:String},
+    "status": {type:Boolean,default:false},
 
     "items": [
         {
@@ -17,7 +19,13 @@ const billSchema = new Schema({
         }
     ],
     "previous_amount" : Number,
-    "total_amount": {type:Number,required:true}
+    "total_amount": {type:Number,required:true},
+    "created_by" : [
+       { 
+        "name" : {type:String},
+        "role" : {type:String}
+       }
+    ]
 },
 {
     collection:"bill"

@@ -6,11 +6,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-image: url("/images/imageFinal.jpg"); /* Replace with your image path */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../images/imageFinal.webp");
+  background-color: #f4f7f9;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -19,11 +17,15 @@ body {
 
 /* Navbar */
 nav {
-  background-color: #334;
+  background-color: #0a0a0a;
   color: white;
   padding: 1rem;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 nav ul {
@@ -35,36 +37,38 @@ nav ul {
 }
 
 nav ul li {
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-  background-color: #555;
-  border-radius: 5px;
+  color: #007bff;
 }
 
 /* Main Container */
 .container {
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  max-width: 700px;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   width: 90%;
-  margin: 2rem auto;
+  margin: 6rem auto 2rem;
 }
 
 /* Heading */
 h1 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 2rem;
+  color: #222;
+  font-weight: 600;
 }
 
 /* Form */
@@ -74,9 +78,9 @@ form {
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: #444;
 }
 
 input[type="text"],
@@ -85,25 +89,25 @@ input[type="number"],
 textarea,
 input[type="file"] {
   font-size: 1rem;
-  padding: 0.75rem;
+  padding: 0.85rem;
   margin-bottom: 1.5rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: #fafafa;
+  transition: all 0.3s ease-in-out;
 }
 
 textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
   border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 input[type="checkbox"] {
@@ -116,12 +120,13 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 0.75rem;
+  transition: background-color 0.3s ease-in-out;
+  padding: 0.85rem;
   font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 6px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
@@ -137,13 +142,14 @@ button:focus {
   display: block;
   margin-top: 1rem;
   text-align: center;
-  padding: 0.75rem;
+  padding: 0.85rem;
   background-color: #6c757d;
   color: white;
-  border-radius: 5px;
+  border-radius: 6px;
   text-decoration: none;
   font-size: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .btn-back:hover {
@@ -152,12 +158,14 @@ button:focus {
 
 /* Footer */
 footer {
-  background-color: #334;
+  background-color: #0a0a0a;
   color: white;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
   width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
@@ -170,6 +178,6 @@ footer {
   textarea,
   button {
     font-size: 0.9rem;
-    padding: 0.5rem;
+    padding: 0.65rem;
   }
 }

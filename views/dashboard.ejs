@@ -3,73 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Management Dashboard</title>
+    <title>Construction Management Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body>
     <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
+      <!-- Brand on the left -->
+      <a class="brand" href="/dashboard">Construction Management</a>
+
+      <!-- Centered Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
         <li><a href="#tasks">Notifications</a></li>
         <li><a href="#reports">About</a></li>
+        <% if (user && user.role === "admin") { %>
+          <li><a href="/admin/roles">Roles</a></li>
+        <% } %>
       </ul>
+
+      <!-- User Menu (Right Side) -->
+      <div class="user-menu" id="userMenu">
+        <div class="dropdown-toggle">
+          <img
+            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+            alt="User Avatar"
+          />
+        </div>
+        <ul class="dropdown-menu" id="userDropdownMenu">
+          <li type="none"><a>Hi, <%- user.name %>!</a></li>
+          <li type="none"><a>Logged in as: <%- user.role %> </a></li>
+          <li type="none"><a href="/logout">Log Out</a></li>
+        </ul>
+      </div>
     </nav>
 
     <main>
-      <h1>Welcome to the Project Management Dashboard</h1>
-      <p>
-        Stay updated with your latest projects, tasks, and reports at a glance.
-      </p>
+      <h1>Welcome to the Construction Management Dashboard</h1>
+      <p>Stay updated with your latest projects, tasks, and reports at a glance.</p>
 
-      <!-- Quick Stats Section -->
       <section class="quick-stats">
         <h2>Quick Stats</h2>
         <div class="stats-grid">
-          <div class="stat-card">
+          <a href="/project" class="stat-card">
             <h3>Ongoing Projects</h3>
-            <p>5</p>
-          </div>
-          <div class="stat-card">
+            <p><%- ongoing %></p>
+          </a>
+          <a href="/project" class="stat-card">
             <h3>Tasks Due Today</h3>
-            <p>3</p>
-          </div>
-          <div class="stat-card">
+            <p>5</p>
+          </a>
+          <a href="/project" class="stat-card">
             <h3>Completed Projects</h3>
-            <p>12</p>
-          </div>
-          <div class="stat-card">
+            <p><%- completed %></p>
+          </a>
+          <a href="/project" class="stat-card">
             <h3>Upcoming Deadlines</h3>
-            <p>4</p>
-          </div>
+            <p>6</p>
+          </a>
         </div>
       </section>
+      
 
-      <!-- Recent Activity Section -->
       <section class="recent-activity">
         <h2>Recent Activity</h2>
         <ul>
-          <li>
-            Project <strong>PG CRC</strong> updated by <strong>ABC</strong>.
-          </li>
-          <li>
-            Task <strong>Swimming Pool</strong> completed by
-            <strong>XYZ</strong>.
-          </li>
-          <li>
-            Deadline for <strong>Tender Release</strong> approaching in 2 days.
-          </li>
+          <li>Project <strong>PG CRC</strong> updated by <strong>ABC</strong>.</li>
+          <li>Task <strong>Swimming Pool</strong> completed by <strong>XYZ</strong>.</li>
+          <li>Deadline for <strong>Tender Release</strong> approaching in 2 days.</li>
         </ul>
       </section>
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer">
-      <p>&copy; 2024 Project Management. All rights reserved.</p>
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </footer>
 
-    <script>
-      // You can add any necessary JavaScript here
-    </script>
+    <!-- Minimal JavaScript for toggling the user dropdown -->
+    <script src="/js/dashboard.js"></script>
   </body>
 </html>

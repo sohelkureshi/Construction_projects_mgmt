@@ -1,52 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Progress Details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/viewprog_task.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/viewprog_task.css" />
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="/dashboard">Home</a></li>
-            <li><a href="/project">Projects</a></li>
-        </ul>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
     </nav>
 
     <div class="container">
-        <h1>Progress Details</h1>
-        <div class="progress-card">
-        <a href="/project/<%= project.id %>/progress">Back</a>
-            <h3>Sub-task of Progress: <%= progress.task %></h3>
-            <p><strong>Initial Date:</strong> <%= new Date(progress.initial_date).toLocaleDateString() %></p>
-            <p><strong>Final Date:</strong> <%= new Date(progress.final_date).toLocaleDateString() %></p>
-            <p><strong>Percentage Completed:</strong> <%= progress.percentage %>%</p>
-            <p><strong>Status:</strong> <%= progress.completed ? 'Completed' : 'In Progress' %></p>
-            <p><strong>Description:</strong> <%= progress.description %></p>
+      <h1>Progress Details</h1>
+      <div class="progress-card">
+        <!-- Back button styled and positioned at the top left inside the card -->
+        <a href="/project/<%= project.id %>/progress" class="btn-back">Back</a>
+        <h3>Sub-task of Progress: <%= progress.task %></h3>
+        <p>
+          <strong>Initial Date:</strong> 
+          <%= new Date(progress.initial_date).toLocaleDateString() %>
+        </p>
+        <p>
+          <strong>Final Date:</strong> 
+          <%= new Date(progress.final_date).toLocaleDateString() %>
+        </p>
+        <p>
+          <strong>Percentage Completed:</strong> 
+          <%= progress.percentage %>% 
+        </p>
+        <p>
+          <strong>Status:</strong> 
+          <%= progress.completed ? 'Completed' : 'In Progress' %>
+        </p>
+        <p><strong>Description:</strong> <%= progress.description %></p>
 
-            <% if (progress.image && progress.image.length > 0) { %>
-                <div id="progressImageCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <% progress.image.forEach((img, index) => { %>
-                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                <img src="<%= img.url %>" class="d-block w-100 progress-image" alt="<%= img.fileName %>">
-                            </div>
-                        <% }); %>
-                    </div>
-                    
+        <% if (progress.image && progress.image.length > 0) { %>
+          <div
+            id="progressImageCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <% progress.image.forEach((img, index) => { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                  <img
+                    src="<%= img.url %>"
+                    class="d-block w-100 progress-image"
+                    alt="<%= img.fileName %>"
+                  />
                 </div>
-            <% } else { %>
-                <p>No images available for this progress.</p>
-            <% } %>
-        </div>
+              <% }); %>
+            </div>
+          </div>
+        <% } else { %>
+          <p>No images available for this progress.</p>
+        <% } %>
+      </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Project Management</p>
+      <p>&copy; 2024 Construction Management</p>
     </footer>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>

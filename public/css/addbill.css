@@ -6,7 +6,7 @@ body {
 }
 
 .navbar {
-    background-color: #334;
+    background-color: rgb(15, 15, 15);
     padding: 1em;
     display: flex;
     justify-content: center;
@@ -78,7 +78,7 @@ h1 {
 }
 
 #billTable th {
-    background-color: #3498db;
+    background-color: #171819;
     color: #fff;
 }
 
@@ -103,7 +103,7 @@ h1 {
 }
 
 .button, .submit-button {
-    background-color: #3498db;
+    background-color: #0d0d0d;
     color: #fff;
     padding: 0.7em 1.2em;
     border: none;
@@ -118,7 +118,7 @@ h1 {
 }
 
 .footer {
-    background-color: #2c3e50;
+    background-color: #141415;
     color: #fff;
     text-align: center;
     padding: 1em 0;

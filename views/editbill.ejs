@@ -1,139 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Bill for Project: <%- project.title %></title>
-    <link rel="stylesheet" href="/css/addbill.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/addbill.css" />
+  </head>
+  <body>
     <div class="navbar">
-        <div class="nav-title">
-            <a href="/dashboard">Home</a>
-            <a href="/project">Projects</a>
-            <a href="/notifications">Notifications</a>
-            <a href="/about">About</a>
-        </div>
+      <div class="nav-title">
+        <a href="/dashboard">Home</a>
+        <a href="/project">Projects</a>
+        <a href="/notifications">Notifications</a>
+        <a href="/about">About</a>
+        <a href="/logout">Logout</a>
+      </div>
     </div>
 
     <div class="form-container">
-        <h1>Edit Bill for Project: <%- project.title %></h1>
+      <h1>Edit Bill for Project: <%- project.title %></h1>
 
-        <form id="billForm" action="/project/<%= project._id %>/bill/<%= bill._id %>?_method=PUT" method="POST">
-            <div class="form-field">
-                <label for="billName">Bill Name:</label>
-                <input type="text" id="billName" name="bill[Bill_Name]" value="<%= bill.Bill_Name %>" required>
-            </div>
+      <form
+        id="billForm"
+        action="/project/<%= project._id %>/bill/<%= bill._id %>?_method=PUT"
+        method="POST"
+      >
+        <div class="form-field">
+          <label for="billName">Bill Name:</label>
+          <input
+            type="text"
+            id="billName"
+            name="bill[Bill_Name]"
+            value="<%= bill.Bill_Name %>"
+            required
+          />
+        </div>
 
-            <div class="form-field">
-                <label for="billId">Bill ID:</label>
-                <input type="number" id="billId" name="bill[bill_id]" value="<%= bill.bill_id %>" readonly>
-            </div>
+        <div class="form-field">
+          <label for="billId">Bill ID:</label>
+          <input
+            type="number"
+            id="billId"
+            name="bill[bill_id]"
+            value="<%= bill.bill_id %>"
+            readonly
+          />
+        </div>
 
-            <div class="form-field">
-                <label for="billDate">Bill Date:</label>
-                <input type="date" id="billDate" name="bill[date]" readonly>
-            </div>
+        <div class="form-field">
+          <label for="billDate">Bill Date:</label>
+          <input
+            type="date"
+            id="billDate"
+            name="bill[date]"
+            value="<%= new Date(bill.date).toISOString().split('T')[0] %>"
+            required
+          />
+        </div>
 
-            <table id="billTable">
-                <thead>
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Units</th>
-                        <th>Rate</th>
-                        <th>Amount</th>
-                        <th>Action</th> <!-- New column for delete button -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(let i = 0; i < bill.items.length; i++) { %>
-                        <tr>
-                            <td><input type="number" name="bill[items][<%= i %>][item_id]" value="<%= bill.items[i].item_id %>" required></td>
-                            <td><input type="text" name="bill[items][<%= i %>][name]" value="<%= bill.items[i].name %>" required></td>
-                            <td><input type="number" name="bill[items][<%= i %>][quantity]" value="<%= bill.items[i].quantity %>" oninput="calculateAmount(this)" required></td>
-                            <td><input type="text" name="bill[items][<%= i %>][units]" value="<%= bill.items[i].units %>" required></td>
-                            <td><input type="number" name="bill[items][<%= i %>][rate]" value="<%= bill.items[i].rate %>" oninput="calculateAmount(this)" required></td>
-                            <td><input type="number" name="bill[items][<%= i %>][amount]" value="<%= bill.items[i].amount %>" readonly></td>
-                            <td><button type="button" onclick="deleteRow(this)">Delete</button></td> <!-- Delete button -->
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+      <% if(user && ["manager","admin"].includes(user.role)){ %>
+        <div class="form-field">
+          <label for="billStatus">Bill Status:</label>
+          <select id="billStatus" name="bill[status]" required>
+            <option value="true" <%= bill.status ? 'selected' : '' %>>True</option>
+            <option value="false" <%= !bill.status ? 'selected' : '' %>>False</option>
+          </select>
+        </div>
+      <% } %>
 
-            <div class="total">
-                Total Amount: <span id="totalAmount"><%= bill.total_amount.toFixed(2) %></span>
-                <input type="hidden" id="totalAmountInput" name="bill[total_amount]" value="<%= bill.total_amount %>">
-            </div>
+        <table id="billTable">
+          <thead>
+            <tr>
+              <th>Item ID</th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Units</th>
+              <th>Rate</th>
+              <th>Amount</th>
+              <th>Action</th>
+              <!-- New column for delete button -->
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i < bill.items.length; i++) { %>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  name="bill[items][<%= i %>][item_id]"
+                  value="<%= bill.items[i].item_id %>"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="bill[items][<%= i %>][name]"
+                  value="<%= bill.items[i].name %>"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="bill[items][<%= i %>][quantity]"
+                  value="<%= bill.items[i].quantity %>"
+                  oninput="calculateAmount(this)"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="bill[items][<%= i %>][units]"
+                  value="<%= bill.items[i].units %>"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="bill[items][<%= i %>][rate]"
+                  value="<%= bill.items[i].rate %>"
+                  oninput="calculateAmount(this)"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="bill[items][<%= i %>][amount]"
+                  value="<%= bill.items[i].amount %>"
+                  readonly
+                />
+              </td>
+              <td>
+                <button type="button" onclick="deleteRow(this)">Delete</button>
+              </td>
+              <!-- Delete button -->
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
 
-            <div class="button-container">
-                <button type="button" class="button" onclick="addRow()">Add New Item</button>
-                <button type="submit" class="submit-button">Save Changes</button>
-                <a href="/project/<%= project.id %>/bill" class="button">Back</a>
-            </div>
-        </form>
+        <div class="total">
+          Total Amount:
+          <span id="totalAmount"><%= bill.total_amount.toFixed(2) %></span>
+          <input
+            type="hidden"
+            id="totalAmountInput"
+            name="bill[total_amount]"
+            value="<%= bill.total_amount %>"
+          />
+        </div>
+
+        <div class="button-container">
+          <button type="button" class="button" onclick="addRow()">
+            Add New Item
+          </button>
+          <button type="submit" class="submit-button">Save Changes</button>
+          <a href="/project/<%= project.id %>/bill" class="button">Back</a>
+        </div>
+      </form>
     </div>
 
     <div class="footer">
-        © 2024 Project Management. All rights reserved.
+      © 2024 Construction Management. All rights reserved.
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('billDate').value = today;
-        });
-
-        function addRow() {
-            const table = document.getElementById('billTable').getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-            const itemIdCell = newRow.insertCell(0);
-            const itemCell = newRow.insertCell(1);
-            const quantityCell = newRow.insertCell(2);
-            const unitsCell = newRow.insertCell(3);
-            const rateCell = newRow.insertCell(4);
-            const amountCell = newRow.insertCell(5);
-            const actionCell = newRow.insertCell(6); // New cell for delete button
-
-            const rowIndex = table.rows.length;
-
-            itemIdCell.innerHTML = `<input type="number" name="bill[items][${rowIndex}][item_id]" placeholder="Item ID" required>`;
-            itemCell.innerHTML = `<input type="text" name="bill[items][${rowIndex}][name]" placeholder="Item" required>`;
-            quantityCell.innerHTML = `<input type="number" name="bill[items][${rowIndex}][quantity]" placeholder="Quantity" oninput="calculateAmount(this)" required>`;
-            unitsCell.innerHTML = `<input type="text" name="bill[items][${rowIndex}][units]" placeholder="Units" required>`;
-            rateCell.innerHTML = `<input type="number" name="bill[items][${rowIndex}][rate]" placeholder="Rate" oninput="calculateAmount(this)" required>`;
-            amountCell.innerHTML = `<input type="number" name="bill[items][${rowIndex}][amount]" placeholder="Amount" readonly>`;
-            actionCell.innerHTML = `<button type="button" onclick="deleteRow(this)">Delete</button>`;
-        }
-
-        function calculateAmount(input) {
-            const row = input.parentElement.parentElement;
-            const quantity = row.cells[2].getElementsByTagName('input')[0].value;
-            const rate = row.cells[4].getElementsByTagName('input')[0].value;
-            const amountCell = row.cells[5].getElementsByTagName('input')[0];
-            const amount = (quantity * rate) || 0;
-
-            amountCell.value = amount.toFixed(2);
-            updateTotal();
-        }
-
-        function deleteRow(button) {
-            const row = button.parentElement.parentElement;
-            row.remove();
-            updateTotal();
-        }
-
-        function updateTotal() {
-            let total = 0;
-            const table = document.getElementById('billTable').getElementsByTagName('tbody')[0];
-            for (let i = 0; i < table.rows.length; i++) {
-                const amount = parseFloat(table.rows[i].cells[5].getElementsByTagName('input')[0].value) || 0;
-                total += amount;
-            }
-            document.getElementById('totalAmount').textContent = total.toFixed(2);
-            document.getElementById('totalAmountInput').value = total.toFixed(2);
-        }
+    <script src="/js/editbill.js">
+ 
     </script>
-</body>
+  </body>
 </html>

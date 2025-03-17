@@ -1,36 +1,47 @@
-/* Universal Reset */
+/* Dark Theme Add Project */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body Styles */
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #2d88ff;
+  --accent-color: #ff4d4d;
+  --text-light: #ffffff;
+  --text-dark: #050000;
+  --background-light: rgb(255, 255, 255);
+  --surface-color: #f0eeee;
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-image: url("/images/imageFinal.jpg"); /* Replace with your image path */
+  font-family: 'Inter', Arial, sans-serif;
+  background-image: url("/images/imageFinal.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures the body fills the viewport height */
-  color: #333;
+  min-height: 100vh;
+  color: var(--text-dark);
 }
 
-/* Navigation Bar */
 nav {
-  background-color: #334; /* Dark blue background */
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   padding: 1rem;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-soft);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
   list-style-type: none;
   display: flex;
-  justify-content: center; /* Center align navbar items */
+  justify-content: center;
   padding: 0;
   margin: 0;
 }
@@ -40,20 +51,19 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: var(--text-light);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
-  background-color: #555; /* Darker gray for hover */
+  background-color: var(--secondary-color);
   border-radius: 5px;
 }
 
-/* Main Content */
 .main-content {
-  flex: 1; /* Ensures the content grows to fill available space */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,18 +71,19 @@ nav ul li a:hover {
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
+  background-color: var(--surface-color);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: var(--shadow-medium);
   max-width: 600px;
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--text-dark);
 }
 
 form {
@@ -83,7 +94,7 @@ form {
 label {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: var(--text-dark);
 }
 
 input,
@@ -92,10 +103,12 @@ button {
   font-size: 1rem;
   padding: 0.75rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
+  background: var(--background-light);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-soft);
+  color: var(--text-dark);
 }
 
 textarea {
@@ -106,44 +119,37 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(45, 136, 255, 0.5);
 }
 
 button {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2472cc;
 }
 
 button:focus {
   outline: none;
 }
 
-/* Footer */
 .footer {
-  background-color: #334; /* Dark blue background */
-  color: white; /* White text for visibility */
+  background-color: var(--primary-color);
+  color: var(--text-light);
   padding: 1rem;
   text-align: center;
   width: 100%;
-  margin-top: auto; /* Pushes footer to the bottom when content is insufficient */
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Ensure the footer does not overlap content */
+  margin-top: auto;
+  box-shadow: var(--shadow-soft);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.footer p {
-  margin: 0;
-  font-size: 16px; /* Ensure text is readable */
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem;

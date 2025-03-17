@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Hub - Signup</title>
+    <title>Construction Management - Signup</title>
     <link rel="stylesheet" href="/css/signup.css" />
     <link
       rel="stylesheet"
@@ -26,7 +26,7 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1>Transform Your Project Management</h1>
+          <h1>Transform Your Construction Management</h1>
           <p>
             Collaborate, track, and succeed with our comprehensive project
             management solution
@@ -37,7 +37,7 @@
         </div>
         <img
           src="/images/full backgroundd.png"
-          alt="Project Management Dashboard"
+          alt="Construction Management Dashboard"
           class="hero-image"
         />
       </div>
@@ -100,6 +100,22 @@
                 required
               />
             </div>
+            <!-- New Role Selection Field -->
+            <div class="form-group">
+              <label for="role">Select Role:</label>
+              <select id="role" name="role" required>
+                <option value="guest">Guest (View Only)</option>
+                <option value="engineer">Site Engineer/Jr Engineer (Billing/Progress)</option>
+                <option value="contractor">Contractor (Add/Edit/Delete)</option>
+                <option value="manager">Manager (Add/Edit/Delete)</option>
+                <option value="senior-manager">
+                  Senior Manager (Approve Changes)
+                </option>
+                <option value="admin">
+                  Admin (Approve/Reject Account Requests)
+                </option>
+              </select>
+            </div>
             <button type="submit" class="btn primary">Create Account</button>
           </form>
           <p class="login-link">
@@ -135,46 +151,6 @@
       </div>
     </footer>
 
-    <script>
-      // Existing signup form script
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const name = document.getElementById("name").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-
-
-          try {
-            const res = await fetch("/signup", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ name, email, password }),
-            });
-
-
-            const data = await res.json();
-            alert(data.message);
-
-            if (res.ok && data.redirect) {
-              window.location.href = data.redirect;
-            }
-          } catch (error) {
-            console.error("Error during signup:", error);
-            alert("An error occurred during signup. Please try again.");
-          }
-        });
-
-      // Smooth scroll for navigation
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
+    <script src="/js/signup.js"></script>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role Management</title>
+  <link rel="stylesheet" href="/css/role.css" />
+</head>
+<body>
+  <header>
+    <h1>User Approvals</h1>
+  </header>
+  <main>
+    <div class="user-list">
+      <% if (users && users.length) { %>
+        <% users.forEach(function(user) { %>
+          <div class="user-card">
+            <div class="user-info">
+              <p class="name"><strong>Name:</strong> <%= user.name %></p>
+              <p class="email"><strong>Email:</strong> <%= user.email %></p>
+              <p class="role"><strong>Role:</strong> <%= user.role %></p>
+            </div>
+            <div class="toggle-container">
+              <label class="switch">
+                <!-- Checkbox pre-checked if user is already approved -->
+                <input type="checkbox" data-userid="<%= user._id %>" class="approval-toggle" <%= user.approved ? "checked" : "" %> >
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p>No users to display.</p>
+      <% } %>
+    </div>
+  </main>
+  
+  <script src="/js/role.js"></script>
+</body>
+</html>
