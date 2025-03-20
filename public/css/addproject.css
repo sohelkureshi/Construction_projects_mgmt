@@ -29,38 +29,6 @@ body {
   color: var(--text-dark);
 }
 
-nav {
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  padding: 1rem;
-  width: 100%;
-  box-shadow: var(--shadow-soft);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  color: var(--text-light);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
-}
-
-nav ul li a:hover {
-  background-color: var(--secondary-color);
-  border-radius: 5px;
-}
 
 .main-content {
   flex: 1;
@@ -140,13 +108,12 @@ button:focus {
 }
 
 .footer {
-  background-color: var(--primary-color);
-  color: var(--text-light);
+  background-color: black;
+  color: white;
   padding: 1rem;
   text-align: center;
-  width: 100%;
   margin-top: auto;
-  box-shadow: var(--shadow-soft);
+  font-size: 0.9rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 

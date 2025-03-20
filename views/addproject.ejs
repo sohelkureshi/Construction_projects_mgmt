@@ -5,27 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Project</title>
     <link rel="stylesheet" href="/css/addproject.css" />
-    <script src="/js/addproject.js">
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <script src="/js/addproject.js"></script>
+      <script src="/js/navbar.js"></script>
 
-    </script>
+
+    
   </head>
   <body>
-    <!-- Navbar -->
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-      <!-- Display user role -->
-      <div class="user-role">
-        Logged in as:
-        <strong
-          ><%= (user && user.role) ? user.role.charAt(0).toUpperCase() +
-          user.role.slice(1) : "Guest" %></strong
-        >
-      </div>
-    </nav>
+    <%- include('partials/navbar') %>
 
     <!-- Main Content -->
     <div class="main-content">

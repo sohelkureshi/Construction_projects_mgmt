@@ -3,43 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Construction Management</title>
+    <title>Project_details</title>
     <link rel="stylesheet" href="/css/project_details.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
-        %>
-        <li>
-          <a href="/project/<%= project.id %>/editproject">Edit Project</a>
-        </li>
-        <% } %>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
+    <%- include('partials/navbar') %>
 
     <div class="container">
       <div class="left-section">
         <ul>
-          <!-- <li>
-            <a href="/drawings" target="_blank">Drawings</a>
-          </li> -->
-          <!-- <li>
-            <a href="/tender" target="_blank">Tender</a>
-          </li> -->
           <li>
-            <a href="/project/<%- project.id %>/progress" target="_blank"
-              >Progress</a
-            >
+            <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
           </li>
           <li>
             <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
           </li>
-          
           <li>
             <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
           </li>
@@ -59,15 +38,23 @@
             <strong>Start Date :</strong> <%= project.startDate %><br /><br />
             <strong>Completion Date :</strong> <%= project.expectedDate %><br /><br />
           </p>
+          <!-- Edit Project button relocated here, below the project content -->
+          <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
+          <div class="edit-project-container">
+            <a href="/project/<%= project.id %>/editproject" class="edit-project-btn">
+              Edit Project
+            </a>
+          </div>
+          <% } %>
         </div>
       </div>
     </div>
 
     <div class="footer">
       <p>
-        &copy; <%= new Date().getFullYear() %> Construction Management. All
-        rights reserved.
+        &copy; <%= new Date().getFullYear() %> Construction Management. All rights reserved.
       </p>
     </div>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

@@ -20,37 +20,7 @@ body {
   flex-direction: column;
 }
 
-nav {
-  background-color: rgb(241, 10, 10);
-  color: white;
-  padding: 1rem;
-  width: 100%;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul li {
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-
-nav ul li a:hover {
-  background-color: #555;
-  border-radius: 5px;
-}
 
 .main-content {
   display: flex;
@@ -100,11 +70,13 @@ h1 {
 }
 
 .footer {
-  background-color: #334;
+  background-color: black;
   color: white;
   padding: 1rem;
-  width: 100%;
   text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

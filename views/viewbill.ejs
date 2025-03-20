@@ -5,18 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Bill - Demo bill</title>
     <link rel="stylesheet" href="/css/viewbill.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar">
-      <div class="navbar-left">
-        <a href="/home" class="navbar-brand">Home</a>
-        <a href="/project" class="nav-link">Projects</a>
-        <a href="/notifications" class="nav-link">Notifications</a>
-        <a href="/about" class="nav-link">About</a>
-        <a href="/logout" class="nav-link">Logout</a>
-      </div>
-    </nav>
+    <%- include('partials/navbar') %>
 
     <main>
       <h1>Bill Details for Project : <%- project.title %></h1>
@@ -79,5 +72,6 @@
     <footer class="footer">
       <p>© 2024 Construction Management. All rights reserved.</p>
     </footer>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

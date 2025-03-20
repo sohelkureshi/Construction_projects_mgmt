@@ -4,31 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects</title>
+    <!-- Link the global navbar styles -->
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- Link the projects-specific styles -->
     <link rel="stylesheet" href="/css/listofprojects.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
-        %>
-        <li><a href="/project/addproject">Add Project</a></li>
-        <% } %>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-      <div class="user-role">
-        Logged in as:
-        <strong
-          ><%= (user && user.role) ? user.role.charAt(0).toUpperCase() +
-          user.role.slice(1) : "Guest" %></strong
-        >
-      </div>
-    </nav>
+    <!-- Include the Navbar Partial -->
+    <%- include('partials/navbar') %>
 
     <div class="main-content">
-      <div class="container">
+      <div class="projects-container">
         <h1>Projects</h1>
         <div class="project-grid" id="projectGrid">
           <% for(let project of projects) { %>
@@ -40,19 +26,24 @@
             <div class="project-info">
               Supervisor: <%- project.supervisor %>
             </div>
-            <div class="project-info">Company: <%- project.company %></div>
+            <div class="project-info">
+              Company: <%- project.company %>
+            </div>
           </div>
           <% } %>
         </div>
+
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
+        <div class="add-project-container">
+          <a href="/project/addproject" class="add-project-btn">+ Add Project</a>
+        </div>
+        <% } %>
       </div>
     </div>
 
     <div class="footer">
       <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </div>
-
-    <script>
-      // Additional JavaScript can go here if needed
-    </script>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

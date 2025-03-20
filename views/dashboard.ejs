@@ -5,38 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Construction Management Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css" />
+     <!-- Link the navbar styles -->
+     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <nav>
-      <!-- Brand on the left -->
-      <a class="brand" href="/dashboard">Construction Management</a>
-
-      <!-- Centered Navigation Links -->
-      <ul class="nav-links">
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <% if (user && user.role === "admin") { %>
-          <li><a href="/admin/roles">Roles</a></li>
-        <% } %>
-      </ul>
-
-      <!-- User Menu (Right Side) -->
-      <div class="user-menu" id="userMenu">
-        <div class="dropdown-toggle">
-          <img
-            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
-            alt="User Avatar"
-          />
-        </div>
-        <ul class="dropdown-menu" id="userDropdownMenu">
-          <li type="none"><a>Hi, <%- user.name %>!</a></li>
-          <li type="none"><a>Logged in as: <%- user.role %> </a></li>
-          <li type="none"><a href="/logout">Log Out</a></li>
-        </ul>
-      </div>
-    </nav>
+        <!-- Include the Navbar Partial -->
+    <%- include('partials/navbar') %>
 
     <main>
       <h1>Welcome to the Construction Management Dashboard</h1>
@@ -80,6 +54,6 @@
     </footer>
 
     <!-- Minimal JavaScript for toggling the user dropdown -->
-    <script src="/js/dashboard.js"></script>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

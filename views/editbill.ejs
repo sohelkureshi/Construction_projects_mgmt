@@ -3,22 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Bill for Project: <%- project.title %></title>
+    <title>Edit Bill: <%- project.title %></title>
     <link rel="stylesheet" href="/css/addbill.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <div class="navbar">
-      <div class="nav-title">
-        <a href="/dashboard">Home</a>
-        <a href="/project">Projects</a>
-        <a href="/notifications">Notifications</a>
-        <a href="/about">About</a>
-        <a href="/logout">Logout</a>
-      </div>
-    </div>
+    <%- include('partials/navbar') %>
 
     <div class="form-container">
-      <h1>Edit Bill for Project: <%- project.title %></h1>
+      <h1>Edit Bill: <%- project.title %></h1>
 
       <form
         id="billForm"
@@ -168,8 +161,7 @@
       © 2024 Construction Management. All rights reserved.
     </div>
 
-    <script src="/js/editbill.js">
- 
-    </script>
+    <script src="/js/editbill.js"></script>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

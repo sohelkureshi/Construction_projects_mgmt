@@ -5,25 +5,6 @@ body {
     padding: 0;
 }
 
-.navbar {
-    background-color: rgb(15, 15, 15);
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-}
-
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5em;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    background-color: #1a273d;
-    border-radius: 4px;
-}
 
 /* Form container updated to cover 80% of the width */
 .form-container {
@@ -118,12 +99,11 @@ h1 {
 }
 
 .footer {
-    background-color: #141415;
-    color: #fff;
+    background-color: black;
+    color: white;
+    padding: 1rem;
     text-align: center;
-    padding: 1em 0;
-    margin-top: 2em;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+    margin-top: auto;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }

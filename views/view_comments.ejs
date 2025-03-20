@@ -5,17 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Comments</title>
     <link rel="stylesheet" href="/css/view_comments.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
+    <%- include('partials/navbar') %>
 
     <div class="container">
       <h1>Displaying all Comments for: <%= project.title %></h1>
@@ -51,5 +44,6 @@
     <div class="footer">
       <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </div>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>
