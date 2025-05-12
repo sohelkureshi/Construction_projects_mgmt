@@ -51,7 +51,7 @@
           />
         </div>
 
-      <% if(user && ["manager","admin"].includes(user.role)){ %>
+      <% if(user && ["senior-manager","admin"].includes(user.role)){ %>
         <div class="form-field">
           <label for="billStatus">Bill Status:</label>
           <select id="billStatus" name="bill[status]" required>

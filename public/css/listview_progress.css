@@ -161,14 +161,14 @@ button:disabled {
 
 /* Footer styling */
 .footer {
-    background-color: black;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    margin-top: auto;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

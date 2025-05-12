@@ -21,10 +21,13 @@ h1 {
 }
 
 .button-group {
-  margin-bottom: 20px;
+  margin-bottom: 120px;
 }
 
 .button {
+  display: inline-block;      /* ensure margin works */
+  margin-bottom: 1.5rem;   
+  margin-left: 1.5rem;      /* ≈ 64px of gap */
   background-color: #1a1a1a;
   color: #ffffff;
   padding: 10px 15px;

@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Comment</title>
     <link rel="stylesheet" href="/css/addcomment.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
+
+    <%- include('partials/navbar') %>
     <div class="container">
       <h1>Add Comment</h1>
       <form action="/project/<%= project.id %>/comment/addcomment" method="POST">
         <div class="input-group">
           <label for="date">Date:</label>
-          <input type="date" id="date" name="date" value="<%= new Date().toISOString().substring(0,10) %>" required>
+          <input 
+            type="date" 
+            id="date" 
+            name="date" 
+            value="<%= new Date().toISOString().substring(0,10) %>" 
+            min="<%= new Date().toISOString().substring(0,10) %>" 
+            max="<%= new Date().toISOString().substring(0,10) %>" 
+            required
+          >
         </div>
         <div class="input-group">
           <label for="comment">Comment:</label>
@@ -30,5 +32,9 @@
         <button type="submit">Submit Comment</button>
       </form>
     </div>
+    <footer class="footer">
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
+    </footer>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

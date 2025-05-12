@@ -67,3 +67,13 @@ button {
 button:hover {
     background-color: #d62b2b;
 }
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
