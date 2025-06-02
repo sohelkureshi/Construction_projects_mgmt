@@ -18,7 +18,18 @@ const dashboardRoutes = require("./routes/dashboard");
 const commentroutes = require("./routes/comment");
 const session = require('express-session');
 const User = require("./model/userSchema");
+
+// --- SOCKET.IO SETUP ---
+const http = require('http');
+const socketio = require('socket.io');
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+// Make io available to routes
+app.set('io', io);
+
+// --- END SOCKET.IO SETUP ---
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB Atlas!"))
@@ -109,5 +120,15 @@ app.get('/project', (req, res) => {
   res.render('listofprojects', { user: req.user, projects: [] });
 });
 
+// --- SOCKET.IO REAL-TIME COMMENT ROOM JOINING ---
+io.on('connection', (socket) => {
+  // Listen for joining a project room
+  socket.on('joinProject', (projectId) => {
+    socket.join(projectId);
+  });
+});
+// --- END SOCKET.IO ---
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
+// IMPORTANT: Listen on all interfaces so mobile can connect!
+server.listen(PORT, '0.0.0.0', () => console.log(`Server started on port ${PORT}!`));

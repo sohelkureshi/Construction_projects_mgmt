@@ -45,5 +45,45 @@
       <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </div>
     <script src="/js/navbar.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const projectId = "<%= project._id %>";
+      const user = <%- JSON.stringify(user || null) %>;
+
+      const socket = io();
+
+      // Join the project room
+      socket.emit('joinProject', projectId);
+
+      // Listen for new comments
+      socket.on('newComment', function(data) {
+        if (data.projectId !== projectId) return;
+
+        // Create new comment DOM element
+        const container = document.querySelector('.container');
+        const commentCard = document.createElement('div');
+        commentCard.className = 'comment-card';
+
+        commentCard.innerHTML = `
+          <div class="comment-meta">
+            <span>${data.user_name} (${data.user_role})</span>
+            <span>${new Date(data.date).toLocaleDateString()}</span>
+          </div>
+          <div class="comment-text">
+            <p>${data.comment}</p>
+          </div>
+          ${user && ["engineer","contractor","senior-manager","manager","admin"].includes(user.role) 
+            ? `<a href="/project/${projectId}/comment/addcomment" class="reply-button">Reply</a>` 
+            : ''}
+        `;
+
+        // Insert the new comment at the top or bottom as preferred
+        container.insertBefore(commentCard, container.querySelector('.add-comment-container') || null);
+      });
+    </script>
+
+
+
+
   </body>
 </html>
