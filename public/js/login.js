@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 Sohel Kureshi
+// SPDX-License-Identifier: MIT
+
 document
         .querySelector(".password-toggle")
         .addEventListener("click", function () {
