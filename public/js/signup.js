@@ -1,4 +1,6 @@
-// Signup form submission
+// SPDX-FileCopyrightText: 2025 Sohel Kureshi
+// SPDX-License-Identifier: MIT
+
 document
 .getElementById("signupForm")
 .addEventListener("submit", async (e) => {
