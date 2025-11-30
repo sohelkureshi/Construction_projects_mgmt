@@ -179,10 +179,8 @@ This project is licensed under the **MIT License**.
 For issues, feedback, or suggestions, visit:
 
 ```
+Email :- sohelkureshi138@gmail.com
 https://github.com/sohelkureshi/Construction_projects_mgmt
 ```
 
 ---
-
-
-Want that too? 🙂
