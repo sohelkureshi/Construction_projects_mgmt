@@ -1,0 +1,79 @@
+/* General styling */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main container */
+.container {
+    width: 50%;
+    min-height: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* Form Styling */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.input-group textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+button {
+    background-color: #0e0f12;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #d62b2b;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

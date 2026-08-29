@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project_details</title>
+    <link rel="stylesheet" href="/css/project_details.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <div class="container">
+      <div class="left-section">
+        <ul>
+          <li>
+            <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
+          </li>
+          <li>
+            <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/comment">Comments</a>
+          </li>
+        </ul>
+      </div>
+      <div class="main-section">
+        <div class="content">
+          <h1><%= project.title %></h1>
+          <p>
+            <strong>Project Overview:</strong> <%= project.overview %><br /><br />
+            <strong>Location:</strong> <%= project.location %><br /><br />
+            <strong>Project Duration:</strong> <%= project.duration %><br /><br />
+            <strong>Current Status:</strong> <%= project.status %><br /><br />
+            <strong>Start Date :</strong> <%= project.startDate %><br /><br />
+            <strong>Completion Date :</strong> <%= project.expectedDate %><br /><br />
+          </p>
+          <!-- Edit Project button relocated here, below the project content -->
+          <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
+          <div class="edit-project-container">
+            <a href="/project/<%= project.id %>/editproject" class="edit-project-btn">
+              Edit Project
+            </a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>
+        &copy; <%= new Date().getFullYear() %> Construction Management. All rights reserved.
+      </p>
+    </div>
+    <script src="/js/navbar.js"></script>
+  </body>
+</html>

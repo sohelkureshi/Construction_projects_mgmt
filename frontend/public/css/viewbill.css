@@ -1,0 +1,80 @@
+/* Dark Theme View Bill */
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #050000;
+  width: 100%;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  color: #050000;
+}
+
+.button-group {
+  margin-bottom: 120px;
+}
+
+.button {
+  display: inline-block;      /* ensure margin works */
+  margin-bottom: 1.5rem;   
+  margin-left: 1.5rem;      /* ≈ 64px of gap */
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2472cc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #f0eeee;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  color: #050000;
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.amount-summary {
+  text-align: right;
+  margin-top: 20px;
+  color: #050000;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
