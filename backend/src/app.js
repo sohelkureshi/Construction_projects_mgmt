@@ -1,0 +1,16 @@
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const authRoutes = require("./routes/auth");
+const projectRoutes = require("./routes/projects");
+const dashboardRoutes = require("./routes/dashboard");
+const adminRoutes = require("./routes/admin");
+const app = express();
+app.set("trust proxy", 1);
+app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:5000", credentials: true }));
+app.use(express.json({ limit: "1mb" })); app.use(cookieParser());
+app.get("/health", (req, res) => res.json({ status: "ok" }));
+app.use("/api/auth", authRoutes); app.use("/api/projects", projectRoutes); app.use("/api/dashboard", dashboardRoutes); app.use("/api/admin", adminRoutes);
+app.use((req, res) => res.status(404).json({ message: "Route not found." }));
+app.use((error, req, res, next) => { console.error(error); res.status(error.status || 500).json({ message: error.message || "Unexpected server error." }); });
+module.exports = app;
