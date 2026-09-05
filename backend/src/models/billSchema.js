@@ -7,11 +7,17 @@ const billSchema = new Schema({
     "date": {type:Date},
     "Bill_Name" : {type:String},
     "status": {type:Boolean,default:false},
+    "bill_type": { type: String, default: "Running account" },
+    "certification_status": { type: String, default: "Draft" },
+    "notes": { type: String },
 
     "items": [
         {
             "item_id": {type:Number,required:true},
             "name": {type:String,required:true},
+            "category": {type:String},
+            "standard": {type:String},
+            "description": {type:String},
             "quantity": {type:Number,required:true},
             "units" : {type:String,required:true},
             "rate": {type:Number,required:true},

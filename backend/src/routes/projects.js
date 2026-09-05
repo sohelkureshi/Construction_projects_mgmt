@@ -73,9 +73,23 @@ router.post("/:projectId/bills", ...allowRoles("engineer", "contractor", "admin"
   try {
     const project = await Project.findById(req.params.projectId);
     if (!project) return res.status(404).json({ message: "Project not found." });
-    const items = Array.isArray(req.body.items) ? req.body.items : req.body.item_name ? [{ item_id: 1, name: req.body.item_name, quantity: Number(req.body.quantity), units: req.body.units, rate: Number(req.body.rate), amount: Number(req.body.quantity) * Number(req.body.rate) }] : [];
+    const incomingItems = Array.isArray(req.body.items) ? req.body.items : req.body.item_name ? [{ item_id: 1, name: req.body.item_name, quantity: req.body.quantity, units: req.body.units, rate: req.body.rate }] : [];
+    const items = incomingItems.map((item, index) => ({
+      item_id: Number(item.item_id) || index + 1,
+      name: String(item.name || "").trim(),
+      category: String(item.category || "Material"),
+      standard: String(item.standard || ""),
+      description: String(item.description || ""),
+      quantity: Number(item.quantity),
+      units: String(item.units || "").trim(),
+      rate: Number(item.rate),
+      amount: Number(item.quantity) * Number(item.rate)
+    }));
+    if (!req.body.Bill_Name || !req.body.date || !items.length || items.some((item) => !item.name || !item.units || !Number.isFinite(item.quantity) || item.quantity <= 0 || !Number.isFinite(item.rate) || item.rate < 0)) {
+      return res.status(400).json({ message: "Enter a bill name, date, and valid quantity, unit, and rate for every line item." });
+    }
     const total_amount = items.reduce((total, item) => total + Number(item.amount || Number(item.quantity) * Number(item.rate) || 0), 0);
-    const bill = await Bill.create({ ...pick(req.body, ["bill_id", "date", "Bill_Name", "previous_amount", "status"]), items, total_amount, created_by: [{ name: req.user.name, role: req.user.role }] });
+    const bill = await Bill.create({ ...pick(req.body, ["bill_id", "date", "Bill_Name", "previous_amount", "status", "bill_type", "certification_status", "notes"]), items, total_amount, created_by: [{ name: req.user.name, role: req.user.role }] });
     project.bills.push(bill.id); await project.save(); res.status(201).json({ bill });
   } catch (error) { next(error); }
 });
